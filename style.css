@@ -1,0 +1,12 @@
+.kpi {
+    border: 1px solid #cccccc;
+    float: left;
+    margin-right: 20px;
+    padding: 20px;
+    border-radius: 2px;
+}
+
+.kpi > div {
+	font-size: 40px;
+	text-align: center;
+}
