@@ -12,7 +12,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-		<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">GB2BC Brabd Dashboard</a>
+		<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">GB2BC Brand Dashboard</a>
 		<ul class="navbar-nav px-3">
 			<li class="nav-item text-nowrap">
 				<a class="nav-link" href="#">Sign out</a>
@@ -59,33 +59,103 @@
 				</ul>
 				<div class="tab-content" id="myTabContent">
 				  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-				  	<h1 class="today">(Today String)</h1>
+				  	<h1 class="today">2019-01-14</h1>
 				  	<div class="container-fluid">
+				  		<!-- Daily Statistic Row -->
 				  		<div class="row">
 				  			<div class="col-md-4">
 				  				<h2>Native App</h2>
+				  				<h2>2019-01-13</h2>
 				  			</div>
 				  			<div class="col-md-4">
-				  				<div class="kpi">
-				  					<div id="ios_daily_new_installation">-</div>
-				  					<span>New Installation</span>
+				  				<div class="row">
+				  					<h3>iOS</h3>
 				  				</div>
-				  				<div class="kpi">
-				  					<div id="ios_daily_active_users">-</div>
-				  					<span>Active Users</span>
+				  				<div class="row">
+				  					<div class="kpi">
+				  						<div id="ios_daily_new_installation">-</div>
+				  						<span>New Installation</span>
+				  					</div>
+				  					<div class="kpi">
+				  						<div id="ios_daily_active_users">-</div>
+				  						<span>Active Users</span>
+				  					</div>
 				  				</div>
 				  			</div>
 				  			<div class="col-md-4">
-				  				<div class="kpi">
-				  					<div id="android_daily_new_installation">-</div>
-				  					<span>New Installation</span>
+				  				<div class="row">
+				  					<h3>Android</h3>
 				  				</div>
-				  				<div class="kpi">
-				  					<div id="android_daily_active_users">-</div>
-				  					<span>Active Users</span>
-				  				</div>
+				  				<div class="row">
+				  					<div class="kpi">
+					  					<div id="android_daily_new_installation">-</div>
+					  					<span>New Installation</span>
+					  				</div>
+					  				<div class="kpi">
+					  					<div id="android_daily_active_users">-</div>
+					  					<span>Active Users</span>
+					  				</div>
+					  			</div>
 				  			</div>
 				  		</div>
+				  		<!-- End of Daily Statistic Row -->
+
+				  		<!-- Search History Row -->
+				  		<h2>Search History</h2>
+				  		<form>
+			  				<div class="form-row">
+			  					<div class="col-3">
+			  						<select id="fun88_search_year" class="form-control">
+			  							<option value="2019">2019</option>
+			  							<option value="2018">2018</option>
+			  						</select>
+			  					</div>
+			  					<div class="col-3">
+			  						<select id="fun88_search_month" class="form-control">
+			  							<option value="01">January</option>
+			  							<option value="02">Febuary</option>
+			  							<option value="03">March</option>
+			  							<option value="04">April</option>
+			  							<option value="05">May</option>
+			  							<option value="06">June</option>
+			  							<option value="07">July</option>
+			  							<option value="08">August</option>
+			  							<option value="09">September</option>
+			  							<option value="10">October</option>
+			  							<option value="11">November</option>
+			  							<option value="12">December</option>
+			  						</select>
+			  					</div>
+			  					<div class="col-3">
+			  						<button class="btn btn-dark">Search</button>
+			  					</div>
+			  				</div>
+			  			</form>
+			  			<!--End of Search History Row -->
+
+							<br>
+			  			<!-- History table row -->
+			  			<div class="row">
+			  				<table class="table table-striped">
+			  					<thead>
+			  						<tr>
+			  							<th>Fun88</th>
+			  							<th colspan="2">iOS</th>
+			  							<th colspan="2">Android</th>
+			  						</tr>
+			  						<tr>
+			  							<th>Date</th>
+			  							<th>Installations</th>
+			  							<th>Active Users</th>
+			  							<th>Installations</th>
+			  							<th>Active Users</th>
+			  						</tr>
+			  					</thead>
+			  					<tbody id="fun88_monthly_table_body">
+			  					</tbody>
+			  				</table>
+			  			</div>
+			  			<!--End of History table row -->
 				  	</div>
 				  </div>
 				  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -98,46 +168,6 @@
       </div>	
 		</div>
 	</div>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			// Initiate tdoay
-			//var todayString = 
-			//$('.today')
-
-			$.ajax({
-			  method: "GET",
-			  url: "ajax.php",
-			  data: { brand: "fun88", year: "2019", month: "01", day: "07" },
-			  success: function(res){
-			  	console.log("Ajax request success!");
-			  	console.log(res);
-			  	var resultArr = JSON.parse(res);
-			  	updateDailyReport(resultArr);
-			  }
-			})
-
-			function updateDailyReport(resultArr) {
-				console.log(resultArr);
-				resultArr.forEach(function(arr){
-					console.log("fuck!!");
-					console.log(arr);
-					//debugger;
-					if (arr["device"] == "ios") {
-						var newInstallation = arr["New Installations"];
-						var activeUsers = arr["Active Users of day"];
-						$('#ios_daily_new_installation').text(newInstallation);
-						$('#ios_daily_active_users').text(activeUsers);
-					} else {
-						var newInstallation = arr["New Installations"];
-						var activeUsers = arr["Active Users of day"];
-						$('#android_daily_new_installation').text(newInstallation);
-						$('#android_daily_active_users').text(activeUsers);
-					}
-				})
-
-			}
-
-		})
-	</script>
+	<script type="text/javascript" src="main.js"></script>
 </body>
 </html>

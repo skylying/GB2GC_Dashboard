@@ -34,12 +34,23 @@ $query2 = $mysqli->query("SELECT * FROM daily_FUN88_Tim WHERE device = 'ios' AND
 // 	echo "<br>";
 // } 
 
-getDailyStatistics($brand, $year, $month, $day);
-
+//getDailyStatistics($brand, $year, $month, $day);
+getMonthlyStatistics($brand, $year, $month);
 
 function getDailyStatistics($brand, $year, $month, $day) {
 	$mysqli = new mysqli("104.197.159.218", "Tim", "Tim@12345", "umeng");
 	$query = 'SELECT * FROM ' . $GLOBALS['brandMapping'][$brand] . ' WHERE year = "' . $year . '" AND month = "' . $month . '" AND day = "' . $day . '"';
+	$raw_result = $mysqli->query($query);
+	$result_list = array();
+	while($row = mysqli_fetch_array($raw_result)) {
+		array_push($result_list, $row);
+	}
+	echo json_encode($result_list);
+}
+
+function getMonthlyStatistics($brand, $year, $month) {
+	$mysqli = new mysqli("104.197.159.218", "Tim", "Tim@12345", "umeng");
+	$query = 'SELECT * FROM ' . $GLOBALS['brandMapping'][$brand] . ' WHERE year = "' . $year . '" AND month = "' . $month . '"';
 	$raw_result = $mysqli->query($query);
 	$result_list = array();
 	while($row = mysqli_fetch_array($raw_result)) {
