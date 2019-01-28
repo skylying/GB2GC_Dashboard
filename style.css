@@ -1,12 +1,62 @@
+.today {
+	background: #cccccc;
+	padding: 20px;
+	margin: 10px;
+	text-align: center;
+	font-size: 22px;
+	border-radius: 10px;
+}
+
+.daily-row-header {
+	text-align: center;
+	padding-top: 30px;
+}
+
+.daily-row-header > .icon, .daily-row-header > .text {
+	display: inline-block;
+}
+
+.daily-row-header > .icon {
+	margin-right: 20px;
+}
+
+.daily-row-header > .text > .t {
+	font-size: 24px;
+}
+
+
+.kpi-block {
+	margin: 0 auto;
+	border: 1px solid #cccccc;
+	border-radius: 2px;
+}
+
+.kpi-block > .platform {
+	text-align: center;
+	font-size: 20px;
+	padding-top: 10px;
+}
+
 .kpi {
-    border: 1px solid #cccccc;
     float: left;
     margin-right: 20px;
-    padding: 20px;
-    border-radius: 2px;
+    padding: 0 15px 15px 15px;
 }
 
 .kpi > div {
 	font-size: 40px;
 	text-align: center;
 }
+
+.row-padding {
+	padding: 25px 0 25px 0;
+}
+
+.nav-link {
+	color: black;
+}
+
+.nav-link.active {
+  color: #007bff;
+}
+
